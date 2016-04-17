@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.reinvo.together.LoginActivity"
+    tools:showIn="@layout/activity_login"
+    android:id="@+id/login_form">
+
+        <LinearLayout
+            android:id="@+id/email_login_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_margin="@dimen/activity_horizontal_margin">
+
+            <TextView
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/greeting"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/small_greeting"
+                android:textAlignment="center"/>
+
+            <com.twitter.sdk.android.core.identity.TwitterLoginButton
+                android:layout_marginTop="40dp"
+                android:id="@+id/twitter_login_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.digits.sdk.android.DigitsAuthButton
+                android:layout_marginTop="10dp"
+                android:id="@+id/auth_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                android:textAlignment="center"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/login_email"
+                android:textColor="@color/colorPrimary"
+                android:id="@+id/signin_email"/>
+        </LinearLayout>
+
+</RelativeLayout>

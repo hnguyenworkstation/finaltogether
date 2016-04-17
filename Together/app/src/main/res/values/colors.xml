@@ -3,4 +3,24 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--Login Screen Color-->
+    <color name="digit_background">#D4E157</color>
+    <color name="login_background">#ffa366</color>
+    <color name="input_register_hint">#5e6266</color>
+    <color name="input_login">#888888</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Main Tabs Color -->
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
+
+    <!-- Color for Home page cards -->
+    <color name="feed_bg">#d3d6db</color>
+    <color name="feed_item_bg">#ffffff</color>
+    <color name="feed_item_border">#c2c3c8</color>
+    <color name="link">#0a80d1</color>
+    <color name="timestamp">#a0a3a7</color>
+
 </resources>
