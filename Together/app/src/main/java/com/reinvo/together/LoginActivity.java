@@ -99,7 +99,7 @@ public class LoginActivity extends Activity {
         signin_email.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                startActivity(new Intent(LoginActivity.this, EmailLoginActivity.class));
             }
         });
     }
