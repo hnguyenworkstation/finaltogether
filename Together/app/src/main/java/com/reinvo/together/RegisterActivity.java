@@ -2,24 +2,23 @@ package com.reinvo.together;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
@@ -29,15 +28,12 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.reinvo.together.R;
 import AppConnector.AppConfig;
-import AppConnector.AppController;
 import AppConnector.SQLiteHandler;
 import AppConnector.SessionManager;
 
 public class RegisterActivity extends Activity {
 
-    private Button btn_register;
     private static final String TAG = RegisterActivity.class.getSimpleName();
     private Button btnLinkToLogin;
     private EditText inputFullName;
@@ -48,67 +44,69 @@ public class RegisterActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_register);
 
-        inputFullName = (EditText) findViewById(R.id.register_name);
-        inputEmail = (EditText) findViewById(R.id.email);
-        inputPassword = (EditText) findViewById(R.id.password);
-        Button btnRegister = (Button) findViewById(R.id.btn_register);
+            inputFullName = (EditText) findViewById(R.id.register_name);
+            inputEmail = (EditText) findViewById(R.id.email);
+            inputPassword = (EditText) findViewById(R.id.password);
+            Button btnRegister = (Button) findViewById(R.id.btn_register);
 
-        // Progress dialog
-        pDialog = new ProgressDialog(this);
-        pDialog.setCancelable(false);
+            // Progress dialog
+            pDialog = new ProgressDialog(this);
+            pDialog.setCancelable(false);
 
-        // Session manager
-        SessionManager session = new SessionManager(getApplicationContext());
+            // Session manager
+            SessionManager session = new SessionManager(getApplicationContext());
 
-        // SQLite database handler
-        db = new SQLiteHandler(getApplicationContext());
+            // SQLite database handler
+            db = new SQLiteHandler(getApplicationContext());
 
-        // Check if user is already logged in or not
-        if (session.isLoggedIn()) {
-            // User is already logged in. Take him to main activity
-            Intent intent = new Intent(RegisterActivity.this,
-                    MainActivity.class);
-            startActivity(intent);
-            finish();
+            // Check if user is already logged in or not
+            if (session.isLoggedIn()) {
+                // User is already logged in. Take him to main activity
+                Intent intent = new Intent(RegisterActivity.this,
+                        MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
+            // Register Button Click event
+            btnRegister.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    String name = inputFullName.getText().toString().trim();
+                    String email = inputEmail.getText().toString().trim();
+                    String password = inputPassword.getText().toString().trim();
+
+                    if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
+                        registerUser(name, email, password);
+                    } else {
+                        Toast.makeText(getApplicationContext(),
+                                "Please enter your details!", Toast.LENGTH_LONG)
+                                .show();
+                    }
+
+                    startActivity(new Intent(RegisterActivity.this, MainActivity.class));
+                }
+            });
+
+//            // Link to Login Screen
+//            btnLinkToLogin.setOnClickListener(new View.OnClickListener() {
+//
+//                public void onClick(View view) {
+//                    Intent i = new Intent(getApplicationContext(),
+//                            LoginActivity.class);
+//                    startActivity(i);
+//                    finish();
+//                }
+//            });
+
         }
 
-        // Register Button Click event
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                String name = inputFullName.getText().toString().trim();
-                String email = inputEmail.getText().toString().trim();
-                String password = inputPassword.getText().toString().trim();
-
-                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-                    registerUser(name, email, password);
-                } else {
-                    Toast.makeText(getApplicationContext(),
-                            "Please enter your details!", Toast.LENGTH_LONG)
-                            .show();
-                }
-            }
-        });
-//
-//        // Link to Login Screen
-//        btnLinkToLogin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent i = new Intent(getApplicationContext(),
-//                        LoginActivity.class);
-//                startActivity(i);
-//                finish();
-//            }
-//        });
-
-    }
-
-    /**
-     * Function to store user in MySQL database will post params(tag, name,
-     * email, password) to register url
-     * */
+        /**
+         * Function to store user in MySQL database will post params(tag, name,
+         * email, password) to register url
+         * */
     private void registerUser(final String name, final String email,
                               final String password) {
         // Tag used to cancel the request
@@ -122,7 +120,7 @@ public class RegisterActivity extends Activity {
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Register Response: " + response.toString());
+                Log.d(TAG, "Register Response: " + response);
                 hideDialog();
 
                 try {
@@ -151,7 +149,6 @@ public class RegisterActivity extends Activity {
                         startActivity(intent);
                         finish();
                     } else {
-
                         // Error occurred in registration. Get the error
                         // message
                         String errorMsg = jObj.getString("error_msg");
@@ -168,6 +165,21 @@ public class RegisterActivity extends Activity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, "Registration Error: " + error.getMessage());
+
+                if (error instanceof TimeoutError) {
+                    Log.e("Volley", "TimeoutError");
+                }else if(error instanceof NoConnectionError){
+                    Log.e("Volley", "NoConnectionError");
+                } else if (error instanceof AuthFailureError) {
+                    Log.e("Volley", "AuthFailureError");
+                } else if (error instanceof ServerError) {
+                    Log.e("Volley", "ServerError");
+                } else if (error instanceof NetworkError) {
+                    Log.e("Volley", "NetworkError");
+                } else if (error instanceof ParseError) {
+                    Log.e("Volley", "ParseError");
+                }
+
                 Toast.makeText(getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
@@ -181,7 +193,15 @@ public class RegisterActivity extends Activity {
                 params.put("name", name);
                 params.put("email", email);
                 params.put("password", password);
+                return params;
+            }
 
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                // Removed this line if you dont need it or Use application/json
+                // params.put("Content-Type", "application/x-www-form-urlencoded");
+                params.put("Content-Type", "application/json; charset=utf-8");
                 return params;
             }
 

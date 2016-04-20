@@ -20,7 +20,7 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.reinvo.studytogether"
+        applicationId "com.reinvo.together"
         minSdkVersion 17
         targetSdkVersion 23
         versionCode 1

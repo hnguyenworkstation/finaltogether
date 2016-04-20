@@ -1,18 +1,12 @@
 package com.reinvo.together;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,13 +22,9 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.reinvo.together.R;
 import AppConnector.AppConfig;
-import AppConnector.AppController;
 import AppConnector.SQLiteHandler;
 import AppConnector.SessionManager;
-
-import com.reinvo.together.R;
 
 public class EmailLoginActivity extends AppCompatActivity {
 
@@ -92,6 +82,8 @@ public class EmailLoginActivity extends AppCompatActivity {
                             "Please enter the credentials!", Toast.LENGTH_LONG)
                             .show();
                 }
+
+                startActivity(new Intent(EmailLoginActivity.this, MainActivity.class));
             }
         });
 

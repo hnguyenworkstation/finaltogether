@@ -33,4 +33,15 @@
     <string name="email_signup">Sign Up by Email</string>
     <string name="email_login">LOGIN BY EMAIL</string>
 
+    <!-- Main Tabs Strings -->
+    <string name="activity_fragment">Home</string>
+    <string name="about_me_fragment">About Me</string>
+    <string name="title_activity_map">MapActivity</string>
+
+    <!-- Google Map Strings -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
+        AIzaSyDPsdI3GnuLOdXmu5IzBjd-XsYIYb2vDjc
+    </string>
+
+
 </resources>

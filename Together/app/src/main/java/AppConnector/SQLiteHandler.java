@@ -113,5 +113,4 @@ public class SQLiteHandler extends SQLiteOpenHelper  {
 
         Log.d(TAG, "Deleted all user info from sqlite");
     }
-
 }

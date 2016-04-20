@@ -1,4 +1,4 @@
-package AppConnector;
+package com.reinvo.together;
 
 /**
  * Created by Jason on 4/17/2016.
