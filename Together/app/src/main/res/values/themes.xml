@@ -7,4 +7,9 @@
         <item name="android:textColorLink">#ff398622</item>
         <item name="android:colorAccent">#ff398622</item>
     </style>
+
+    <style name="AppTheme.NoActionBar.QuickAdd">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+    </style>
 </resources>

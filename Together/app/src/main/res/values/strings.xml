@@ -38,6 +38,10 @@
     <string name="about_me_fragment">About Me</string>
     <string name="title_activity_map">MapActivity</string>
 
+    <!-- Quick Add String -->
+    <string name="quick_add_title">Event Title: </string>
+    <string name="quick_add_time">Time: </string>
+
     <!-- Google Map Strings -->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
         AIzaSyDPsdI3GnuLOdXmu5IzBjd-XsYIYb2vDjc

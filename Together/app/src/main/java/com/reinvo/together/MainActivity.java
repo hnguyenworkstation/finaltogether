@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO: 4/7/2016: This is not a good practice -- Implement to test FAB action
                 // Try to Open a dialog
+                startActivity(new Intent(MainActivity.this, QuickAddActivity.class));
             }
         });
     }
