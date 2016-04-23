@@ -23,9 +23,9 @@
     <color name="link">#0a80d1</color>
     <color name="timestamp">#a0a3a7</color>
 
-
-    <color name="bg_login">#26ae90</color>
-    <color name="bg_register">#2e3237</color>
+    <color name="link_button">#FFA000</color>
+    <color name="bg_login">#FFEB3B</color>
+    <color name="bg_register">#FDD835</color>
     <color name="bg_main">#428bca</color>
     <color name="input_login_hint">#999999</color>
     <color name="input_register">#888888</color>
