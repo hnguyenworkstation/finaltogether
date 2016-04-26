@@ -41,6 +41,8 @@
     <!-- Quick Add String -->
     <string name="quick_add_title">Event Title: </string>
     <string name="quick_add_time">Time: </string>
+    <string name="title_name">Enter Tittle</string>
+    <string name="quick_add_created">Event Created</string>
 
     <!-- Google Map Strings -->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">

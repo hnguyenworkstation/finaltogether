@@ -3,6 +3,7 @@
     package="com.reinvo.together">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <!-- Required to show current location -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -61,7 +62,7 @@
             android:value="5d23548665cfcb131845fa499f01cac535758a46" />
 
         <activity android:name=".QuickAddActivity"
-            android:theme="@style/AppTheme.NoActionBar.QuickAdd"></activity>
+            android:theme="@style/AppTheme.NoActionBar.QuickAdd"/>
     </application>
 
 </manifest>
